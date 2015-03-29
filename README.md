@@ -33,5 +33,4 @@ More asynchronous programming and composition of custom modules :-D <3
 * First starting with naive server and client (the server ends with error if the client is ended although with telnet/putty client it wasn't a problem): message-boundary; 
 * Then being more comprehensive with the different likely network events in client and server sides
 * Use of testing program with `setTimeout()` and `clearTimeout()` to simulate the need of buffering data inputs
-* Declaration and use of a **custom module** (LDJ buffering client module at `ldj.js`) to buffer incoming data into messages, in this specific case using `EventEmitter`
-
+* Declaration and use of a **custom module** (LDJ buffering client module at `ldj.js`, called `LDJClient`) to buffer incoming data into messages, in this specific case using `EventEmitter`
