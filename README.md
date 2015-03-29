@@ -26,6 +26,9 @@ Discussion on when to use synchronous methods:
 * Use synchronous methods in phase 1 and don't use them in phase 2. Example is the require function: which evaluates the target module's code and returns the module's object. This is done on the initialization phase.
 * If you program can continue without the resource, get the resource asynchronously
 
-### Networking with Sockets  ###
+### Chapter 3: Networking with Sockets  ###
 More asynchronous programming and composition of custom modules :-D <3
 
+* First using raw messages and then using structured protocol such as "Line-Delimited JSON" (LDJ), sending objects with JSON.stringify(...)
+* First starting with naive server and client (the server ends with error if the client is ended although with telnet/putty client it wasn't a problem)
+* Then being more comprehensive with the different likely network events in client and server sides
