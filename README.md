@@ -33,4 +33,27 @@ More asynchronous programming and composition of custom modules :-D <3
 * First starting with naive server and client (the server ends with error if the client is ended although with telnet/putty client it wasn't a problem): message-boundary; 
 * Then being more comprehensive with the different likely network events in client and server sides
 * Use of testing program with `setTimeout()` and `clearTimeout()` to simulate the need of buffering data inputs
-* Declaration and use of a **custom module** (LDJ buffering client module at `ldj.js`, called `LDJClient`) to buffer incoming data into messages, in this specific case using `EventEmitter`
+* Declaration and use of a **custom module** (LDJ buffering client module at `ldj.js`, called `LDJClient`) to buffer incoming data into messages, in this specific case using `EventEmitter`. An example of inheritance in JavaScript (used by node.js) is the following code listing.
+```
+#!javascript
+
+const
+    events=require("events"),
+    util=require("util"),
+    // client constructor
+    /**
+      * LDJClient:
+      * =========
+      * DESCRIPTION: constructor of LDJClient instances, inherites from EvenEmitter
+      * RECEIVES: stream that emits `data` events, such as a `Socket` connection
+      * RETURNS: LDJClient instance
+      */
+    LDJClient=function(stream){
+        // call to the EventEmitter on this, equivalent to calling super in other languages
+        events.EventEmitter.call(this);
+    };
+    // associates EventEmitter prototype as LDJClient's prototypal parent;
+    // which  is a mechanism for JavaScript to look at EventEmitter the
+    // members it doesn't find looking at LDJClient
+    util.inherits(LDJClient,events.EventEmitter);
+```
