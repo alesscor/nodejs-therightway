@@ -39,8 +39,8 @@ More asynchronous programming and composition of custom modules :-D <3
 /**
   * ldj.js Module:
   * ==============
-  * DESCRIPTION: Event handler that append raw `data` to the end
-  *              of the buffer and so pull completed messages.
+  * DESCRIPTION: Event handler that appends raw `data` to the end
+  *              of the buffer and so pulls completed messages.
   * EXPORT:      LDJClient `constructor()` and `connect()` functions.
   * MODIFY:      Emission of `message` events.
   * USAGE:       ---
@@ -59,9 +59,10 @@ const
     /**
       * DESCRIPTION: Constructor of LDJClient instances, inherites from
       *              EvenEmitter.
-      * RECEIVE: stream that emits `data` events, such as a `Socket` connection.
-      * RETURN: LDJClient instance.
-      * MODIFY: Emission of "message" events.
+      * RECEIVE:     stream that emits `data` events, such as a `Socket`
+      *              connection.
+      * RETURN:      LDJClient instance.
+      * MODIFY:      Emission of "message" events.
       */
     LDJClient=function(stream){
         /* call to the EventEmitter on this, equivalent to calling super in
@@ -73,7 +74,7 @@ const
             self=this,
             buffer="";
         stream.on("data",function(data){
-            /** DESCRIPTION: Event handler that append raw `data` to the end
+            /** DESCRIPTION: Event handler that appends raw `data` to the end
               *              of the buffer and so pull completed messages
               * RECEIVE:    data: low level source that forms \n-delimited
               *              messages. It supposes the messages are JSON.
@@ -91,14 +92,14 @@ const
             }
         });
     };
-    /* associates EventEmitter prototype as LDJClient's prototypal parent;
+    /* this associates EventEmitter prototype as LDJClient's prototypal parent;
        which  is a mechanism for JavaScript to look at EventEmitter the
        members it doesn't find looking at LDJClient */
     util.inherits(LDJClient,events.EventEmitter);
     // expose module methods by `exports` <3<3<3<3<3<3!!!
     exports.LDJClient=LDJClient;
     exports.connect=function(stream){
-        /** DESCRIPTION:  Enable the creation of instances of LDJClient
+        /** DESCRIPTION:  Enables the creation of instances of LDJClient
           * RECEIVES      stream: the stream to be listen to to create
           *               the LDJClient instance
           * RETURN:       The LDJClient instance!!!
