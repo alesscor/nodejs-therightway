@@ -36,7 +36,6 @@ More asynchronous programming and composition of custom modules :-D <3
 * Declaration and use of a **custom module** (LDJ buffering client module at `ldj.js`, called `LDJClient`) to buffer incoming data into messages, in this specific case using `EventEmitter`. An example of inheritance in JavaScript (used by node.js) is the following code listing.
 ```
 #!javascript
-
 const
     events=require("events"),
     util=require("util"),
@@ -44,16 +43,34 @@ const
     /**
       * LDJClient:
       * =========
-      * DESCRIPTION: constructor of LDJClient instances, inherites from EvenEmitter
+      * DESCRIPTION: Constructor of LDJClient instances, inherites from
+      *              EvenEmitter
       * RECEIVES: stream that emits `data` events, such as a `Socket` connection
       * RETURNS: LDJClient instance
       */
     LDJClient=function(stream){
-        // call to the EventEmitter on this, equivalent to calling super in other languages
+        /* call to the EventEmitter on this, equivalent to calling super in
+           other languages */
         events.EventEmitter.call(this);
+        let
+            /* declaration of `self` to regard disambiguation for future use
+               of `this` */
+            self=this,
+            buffer="";
+        stream.on("data",function(data)){
+            buffer+=data;
+            let boundary=buffer.indexOf("\n");
+            while(boundary!==-1){
+                let input=buffer.substr(0,boundary);
+                buffer=buffer.substr(boundary+1);
+                // the emission of message <3<3<3
+                self.emit("message",JSON.parse(input));
+                boundary=buffer.indexOf("\n");
+            }
+        }
     };
-    // associates EventEmitter prototype as LDJClient's prototypal parent;
-    // which  is a mechanism for JavaScript to look at EventEmitter the
-    // members it doesn't find looking at LDJClient
+    /* associates EventEmitter prototype as LDJClient's prototypal parent;
+       which  is a mechanism for JavaScript to look at EventEmitter the
+       members it doesn't find looking at LDJClient */
     util.inherits(LDJClient,events.EventEmitter);
 ```
