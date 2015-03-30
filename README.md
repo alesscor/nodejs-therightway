@@ -98,7 +98,7 @@ const
     // expose module methods by `exports` <3<3<3<3<3<3!!!
     exports.LDJClient=LDJClient;
     exports.connect=function(stream){
-        /** DESCRIPTION:  Enable the creation of intances of LDJClient
+        /** DESCRIPTION:  Enable the creation of instances of LDJClient
           * RECEIVES      stream: the stream to be listen to to create
           *               the LDJClient instance
           * RETURN:       The LDJClient instance!!!
@@ -107,3 +107,8 @@ const
         return new LDJClient(stream);
     };
 ```
+* Notes related to testability: How could it divide up and expose the functionality to make it more testable: the connection stream might be simulated by a file stream containing the sequence of messages that triggers the functionality
+* Notes related to robustness: the client produces an error if the message is not a JSON string, case in which the client should disconnect and let know that the server is not running the expected protocol; LDJClient should emit other than `message` events like `nonLDJProtocol`, `serverTimeOut` and `fileNotAvailable` (if any of them were establish as new function)
+* Notes related to separating concerns in LDJClient: it could be added an internal function (not needed to be exported) that reviews if the message is JSON-parsable. But having a separated module for this is not needed because the module is focused on JSON messages. If the protocols to support were more than one, another module dedicated to the protocols would be worth programmed. Regarding the multiple file watchers (understood as multiple processes that look at the file), it might be programmed a version with only a process watcher that communicates the changes to one server dedicated to notify messages to the multiple clients
+
+### Chapter 4: Robust Messaging Services ###
