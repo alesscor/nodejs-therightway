@@ -39,8 +39,8 @@ More asynchronous programming and composition of custom modules :-D <3
 /**
   * ldj.js Module:
   * ==============
-  * DESCRIPTION: Event handler that append raw `data` to the end
-  *              of the buffer and so pull completed messages.
+  * DESCRIPTION: Event handler that appends raw `data` to the end
+  *              of the buffer and so pulls completed messages.
   * EXPORT:      LDJClient `constructor()` and `connect()` functions.
   * MODIFY:      Emission of `message` events.
   * USAGE:       ---
@@ -59,9 +59,10 @@ const
     /**
       * DESCRIPTION: Constructor of LDJClient instances, inherites from
       *              EvenEmitter.
-      * RECEIVE: stream that emits `data` events, such as a `Socket` connection.
-      * RETURN: LDJClient instance.
-      * MODIFY: Emission of "message" events.
+      * RECEIVE:     stream that emits `data` events, such as a `Socket`
+      *              connection.
+      * RETURN:      LDJClient instance.
+      * MODIFY:      Emission of "message" events.
       */
     LDJClient=function(stream){
         /* call to the EventEmitter on this, equivalent to calling super in
@@ -73,7 +74,7 @@ const
             self=this,
             buffer="";
         stream.on("data",function(data){
-            /** DESCRIPTION: Event handler that append raw `data` to the end
+            /** DESCRIPTION: Event handler that appends raw `data` to the end
               *              of the buffer and so pull completed messages
               * RECEIVE:    data: low level source that forms \n-delimited
               *              messages. It supposes the messages are JSON.
@@ -91,14 +92,14 @@ const
             }
         });
     };
-    /* associates EventEmitter prototype as LDJClient's prototypal parent;
+    /* this associates EventEmitter prototype as LDJClient's prototypal parent;
        which  is a mechanism for JavaScript to look at EventEmitter the
        members it doesn't find looking at LDJClient */
     util.inherits(LDJClient,events.EventEmitter);
     // expose module methods by `exports` <3<3<3<3<3<3!!!
     exports.LDJClient=LDJClient;
     exports.connect=function(stream){
-        /** DESCRIPTION:  Enable the creation of instances of LDJClient
+        /** DESCRIPTION:  Enables the creation of instances of LDJClient
           * RECEIVES      stream: the stream to be listen to to create
           *               the LDJClient instance
           * RETURN:       The LDJClient instance!!!
@@ -108,7 +109,10 @@ const
     };
 ```
 * Notes related to testability: How could it divide up and expose the functionality to make it more testable: the connection stream might be simulated by a file stream containing the sequence of messages that triggers the functionality
-* Notes related to robustness: the client produces an error if the message is not a JSON string, case in which the client should disconnect and let know that the server is not running the expected protocol; LDJClient should emit other than `message` events like `nonLDJProtocol`, `serverTimeOut` and `fileNotAvailable` (if any of them were establish as new function)
+* Notes related to robustness: the client produces an error if the message is not a JSON string, case in which the client should disconnect and let know that the server is not running the expected protocol; LDJClient should emit other than `message` events like `nonLDJProtocol`, `serverTimeOut` and `fileNotAvailable` (if any of them were establish as new function). Several layers of communication can be implemented, each with a specific purpose.
 * Notes related to separating concerns in LDJClient: it could be added an internal function (not needed to be exported) that reviews if the message is JSON-parsable. But having a separated module for this is not needed because the module is focused on JSON messages. If the protocols to support were more than one, another module dedicated to the protocols would be worth programmed. Regarding the multiple file watchers (understood as multiple processes that look at the file), it might be programmed a version with only a process watcher that communicates the changes to one server dedicated to notify messages to the multiple clients
 
 ### Chapter 4: Robust Messaging Services ###
+Learning third-party modules!!! This is by writing robust messaging services in Node and concretely using Node's `cluster` to manage a pool of Node.js worker processes and messaging patterns (publish/subscribe, request/response, push/pull). It has an introduction to `npm`.
+
+* Introduction to 0MQ (Zero-M-Q or `zmq`) for robust messaging services (first intall python, then python+zmq windows bundle gotten from https://github.com/zeromq/pyzmq/downloads, read http://zeromq.org/docs:windows-installations). As there was a problem at building it for `npm`, I followed the answer at [Node packages not building on Windows 8.1 - Missing Microsoft.Cpp.Default.props](http://stackoverflow.com/questions/21069699/node-packages-not-building-on-windows-8-1-missing-microsoft-cpp-default-props) and installed "Visual Studio Express 2013 for Windows Desktop" (with update 4 about 6GB :-S) and run `npm install zmq --msvs_version=2013` [as suggested here](http://stackoverflow.com/questions/14180012/npm-install-for-some-packages-sqlite3-socket-io-fail-with-error-msb8020-on-wi)
