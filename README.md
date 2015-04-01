@@ -122,3 +122,10 @@ Learning third-party modules!!! This is by writing robust messaging services in 
 * Notes on error handling: in case of an error at fs.readFile, zmq-filer-rep.js should send an error event indicating the problem at reading the file's content or could wait until the file is available again using an internal structure of pending jobs. If it were a change on the protocol, it will communicate first if the client prefers to wait in case of error or immediately desist from the result
 * Notes on robustness: the master should detect termination signals from the workers and replace one in case is terminated
 * Notes on bidirectional messaging: nice homework!!!
+
+### Chapter 5: Accessing Databases ###
+About data persistence in databases and request to them, regarding asynchronous issues like overload of systems and how to mitigate these kind of problem and react to them.
+
+* Usage of CouchDB (at (http://couchdb.apache.org/)) for exploring databases with Node, start to using "RESTful" practices
+* Introduction to `package.json` file and `npm init` and `npm install --save <module>` and `npm install`
+
