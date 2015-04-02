@@ -127,5 +127,6 @@ Learning third-party modules!!! This is by writing robust messaging services in 
 About data persistence in databases and request to them, regarding asynchronous issues like overload of systems and how to mitigate these kind of problem and react to them.
 
 * Usage of CouchDB (at (http://couchdb.apache.org/)) for exploring databases with Node, start to using "RESTful" practices
-* Introduction to `package.json` file and `npm init` and `npm install --save <module>` and `npm install`
-
+* Introduction to `package.json` file and `npm init` and `npm install --save <module>` and `npm install -g <module>` and `npm install`
+* Implementing a parser to RDF files and finding out a solution ([described here](https://bitbucket.org/snippets/alesscor/d6Kb)) to the book's proposal which worked partially
+* **Very important:** Overloading the operating system's services and implementing a queue-based solution
