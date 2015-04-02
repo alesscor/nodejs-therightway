@@ -130,3 +130,23 @@ About data persistence in databases and request to them, regarding asynchronous 
 * Introduction to `package.json` file and `npm init` and `npm install --save <module>` and `npm install -g <module>` and `npm install`
 * Implementing a parser to RDF files and finding out a solution ([described here](https://bitbucket.org/snippets/alesscor/d6Kb)) to the book's proposal which worked partially
 * **Very important:** Overloading the operating system's services and implementing a queue-based solution
+* In the importation example (the one that fails because overloading the server with so many requests), the database results for the REST command `GET http://localhost:5984/books` were:
+```
+#!json
+// with a controlled pool of 1000 workers
+{
+  "db_name":"books",
+  "doc_count":3898,
+  "doc_del_count":1,
+  "update_seq":3900,
+  "purge_seq":0,
+  "compact_running":false,
+  "disk_size":110747761,
+  "data_size":108943177,
+  "instance_start_time":"1427927423715440",
+  "disk_format_version":6,
+  "committed_update_seq":3900
+}
+// with a controlled pool of 10 workers
+
+```
