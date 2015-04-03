@@ -136,17 +136,31 @@ About data persistence in databases and request to them, regarding asynchronous 
 /* with a controlled pool of 1000 workers (too many request to my naive couchdb server) */
 {
   "db_name":"books",
-  "doc_count":3898,
-  "doc_del_count":1,
-  "update_seq":3900,
+  "doc_count":2378,
+  "doc_del_count":0,
+  "update_seq":2378,
   "purge_seq":0,
   "compact_running":false,
-  "disk_size":110747761,
-  "data_size":108943177,
-  "instance_start_time":"1427927423715440",
+  "disk_size":1871985,
+  "data_size":754266,
+  "instance_start_time":"1428080323340440",
   "disk_format_version":6,
-  "committed_update_seq":3900
+  "committed_update_seq":2378
 }
+
 /* with a controlled pool of 10 workers */
+{
+  "db_name":"books",
+  "doc_count":48625,
+  "doc_del_count":0,
+  "update_seq":48625,
+  "purge_seq":0,
+  "compact_running":false,
+  "disk_size":127463537,
+  "data_size":14924124,
+  "instance_start_time":"1428079442778440",
+  "disk_format_version":6,
+  "committed_update_seq":48625
+}
 
 ```
