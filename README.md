@@ -128,12 +128,12 @@ About data persistence in databases and request to them, regarding asynchronous 
 
 * Usage of CouchDB (at (http://couchdb.apache.org/)) for exploring databases with Node, start to using "RESTful" practices
 * Introduction to `package.json` file and `npm init` and `npm install --save <module>` and `npm install -g <module>` and `npm install`
-* Implementing a parser to RDF files and finding out a solution ([described here](https://bitbucket.org/snippets/alesscor/d6Kb)) to the book's proposal which worked partially
+* Implementing a parser to RDF files and finding out a solution ([described here](https://bitbucket.org/snippets/alesscor/d6Kb)) to the book's proposal which worked partially. Having read `cheerio.load(...).map(..)` [documentation](https://github.com/cheeriojs/cheerio#map-functionindex-element-) helped
 * **Very important:** Overloading the operating system's services and implementing a queue-based solution
 * In the importation example (the one that fails because overloading the server with so many requests), the database results for the REST command `GET http://localhost:5984/books` were:
 ```
 #!json
-// with a controlled pool of 1000 workers
+/* with a controlled pool of 1000 workers (too many request to my naive couchdb server) */
 {
   "db_name":"books",
   "doc_count":3898,
@@ -147,6 +147,6 @@ About data persistence in databases and request to them, regarding asynchronous 
   "disk_format_version":6,
   "committed_update_seq":3900
 }
-// with a controlled pool of 10 workers
+/* with a controlled pool of 10 workers */
 
 ```
