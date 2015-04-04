@@ -122,3 +122,45 @@ Learning third-party modules!!! This is by writing robust messaging services in 
 * Notes on error handling: in case of an error at fs.readFile, zmq-filer-rep.js should send an error event indicating the problem at reading the file's content or could wait until the file is available again using an internal structure of pending jobs. If it were a change on the protocol, it will communicate first if the client prefers to wait in case of error or immediately desist from the result
 * Notes on robustness: the master should detect termination signals from the workers and replace one in case is terminated
 * Notes on bidirectional messaging: nice homework!!!
+
+### Chapter 5: Accessing Databases ###
+About data persistence in databases and request to them, regarding asynchronous issues like overload of systems and how to mitigate these kind of problem and react to them.
+
+* Usage of CouchDB (at (http://couchdb.apache.org/)) for exploring databases with Node, start to using "RESTful" practices
+* Introduction to `package.json` file and `npm init` and `npm install --save <module>` and `npm install -g <module>` and `npm install`
+* Implementing a parser to RDF files and finding out a solution ([described here](https://bitbucket.org/snippets/alesscor/d6Kb)) to the book's proposal which worked partially. Having read `cheerio.load(...).map(..)` [documentation](https://github.com/cheeriojs/cheerio#map-functionindex-element-) helped
+* **Very important:** Overloading the operating system's services and implementing a queue-based solution
+* In the importation example (the one that fails because overloading the server with so many requests), the database results for the REST command `GET http://localhost:5984/books` were:
+```
+#!json
+/* with a controlled pool of 1000 workers (too many request to my naive couchdb server) */
+{
+  "db_name":"books",
+  "doc_count":2378,
+  "doc_del_count":0,
+  "update_seq":2378,
+  "purge_seq":0,
+  "compact_running":false,
+  "disk_size":1871985,
+  "data_size":754266,
+  "instance_start_time":"1428080323340440",
+  "disk_format_version":6,
+  "committed_update_seq":2378
+}
+
+/* with a controlled pool of 10 workers */
+{
+  "db_name":"books",
+  "doc_count":48625,
+  "doc_del_count":0,
+  "update_seq":48625,
+  "purge_seq":0,
+  "compact_running":false,
+  "disk_size":127463537,
+  "data_size":14924124,
+  "instance_start_time":"1428079442778440",
+  "disk_format_version":6,
+  "committed_update_seq":48625
+}
+
+```
