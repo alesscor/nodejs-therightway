@@ -9,7 +9,7 @@ const
            and binds endpoints */
         let
             router=zmq.socket("router").bind("tcp://127.0.0.1:5433"),
-            dealer=zmq.socket("dealer").bind("tcp://127.0.0.1:5434");
+            dealer=zmq.socket("dealer").bind("tcp://127.0.0.1:5434"); // TCP for no IPC in Windows
 
         /* forwards messages between router and dealer */
         router.on("message",function(){
