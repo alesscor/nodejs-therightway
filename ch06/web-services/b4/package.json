@@ -1,0 +1,18 @@
+{
+  "name": "b4",
+  "version": "0.1.0",
+  "description": "B4, The Better Book Bundle Builder.",
+  "author": "Your Name <you@yoursite.com> (http://yoursite.com/path)",
+  "scripts": {
+    "start": "node --harmony ./server.js"
+  },
+  "dependencies": {
+    "connect-redis": "^1.4.7",
+    "express": "~3.3.8",
+    "morgan": "^1.5.2",
+    "passport": "^0.1.18",
+    "passport-google": "^0.3.0",
+    "q": "^0.9.7",
+    "request": "^2.27.0"
+  }
+}

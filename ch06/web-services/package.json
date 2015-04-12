@@ -1,0 +1,8 @@
+{
+  "name": "web-server",
+  "description": "Scalable Web Services",
+  "author": "Alessandro Cordero <alesscor@gmail.com> (https://bitbucket.org/alesscor/)",
+  "dependencies": {
+    "express": "^4.12.3"
+  }
+}
