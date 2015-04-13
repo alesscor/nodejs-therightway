@@ -5,6 +5,7 @@ Learning to code for node.js, following advice from book [Node.js the Right Way:
 Preparation of:
 
 * cygwin environment for testing (make sure to include `curl` package)
+* Be sure that `git` is installed and available from `%path%` environment variable (`$PATH` on cygwin)
 * Download and installation of node.js version 0.10.20 (as recommended by the book)
 * Preparation of this repository (synchronized using eclipse onboard git)
 
