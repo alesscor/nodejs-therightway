@@ -181,3 +181,4 @@ About data persistence in databases and request to them, regarding asynchronous 
 * It's needed to run `bower install` from Windows' console, it requires some user's data entry that didn't prompt on cygwin's terminal
 * I had to correct the file `index.html` because `jquery.min.js` came inside `dist` directory: `<script src="jquery/dist/jquery.min.js"></script>`
 * I had to `npm uninstall --save passport-google` and `npm install --save passport-google-openidconnect` and modify `server.js` file because of this; and run `taskkill /IM node.exe /F` to restart the service
+* I had to `npm uninstall passport --save` and `npm install passport --save`
