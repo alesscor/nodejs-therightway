@@ -182,5 +182,4 @@ About data persistence in databases and request to them, regarding asynchronous 
 * I had to correct the file `index.html` because `jquery.min.js` came inside `dist` directory: `<script src="jquery/dist/jquery.min.js"></script>`
 * I had to `npm uninstall passport --save` and `npm install passport --save` to get this package's last version
 * I had to `npm uninstall --save passport-google` and `npm install --save passport-google-oauth2` and modify `server.js` file because of this; and run `taskkill /IM node.exe /F` to restart the service
->>>>>>> refs/remotes/master/master
 * I entered this [question/answer entry](http://stackoverflow.com/questions/30145592/node-js-passport-google-oauth2-delivers-failed-to-fetch-user-profile-error-i) to document the changes that resulted from changing the authentication package and the importance of enabling the `Google+ API` from the project at [Google's projects console](https://console.developers.google.com/)
