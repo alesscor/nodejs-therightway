@@ -35,8 +35,7 @@ More asynchronous programming and composition of custom modules :-D <3
 * Then being more comprehensive with the different likely network events in client and server sides
 * Use of testing program with `setTimeout()` and `clearTimeout()` to simulate the need of buffering data inputs
 * Declaration and use of a **custom module** (LDJ buffering client module at `ldj.js`, called `LDJClient`) to buffer incoming data into messages, in this specific case using `EventEmitter`. An example of inheritance in JavaScript (used by node.js) is the following code listing.
-```
-#!javascript
+```javascript
 /**
   * ldj.js Module:
   * ==============
@@ -132,8 +131,7 @@ About data persistence in databases and request to them, regarding asynchronous 
 * Implementing a parser to RDF files and finding out a solution ([described here](https://bitbucket.org/snippets/alesscor/d6Kb)) to the book's proposal which worked partially. Having read `cheerio.load(...).map(..)` [documentation](https://github.com/cheeriojs/cheerio#map-functionindex-element-) helped
 * **Very important:** Overloading the operating system's services and implementing a queue-based solution
 * In the importation example (the one that fails because overloading the server with so many requests), the database results for the REST command `GET http://localhost:5984/books` were:
-```
-#!json
+```json
 /* with a controlled pool of 1000 workers (too many request to my naive couchdb server) */
 {
   "db_name":"books",
@@ -180,7 +178,8 @@ About data persistence in databases and request to them, regarding asynchronous 
 * I had to install first `express-session` and `cookie-parser`, also had to download and install as a service [redis for Windows](https://github.com/MSOpenTech/redis/releases). [Redis](http://en.wikipedia.org/wiki/Redis) is an implementation for shared memory. The Redis for Windows' developers say *We strive to have a stable, functionally equivalent and comparably performing version of Redis on Windows. We have achieved performance nearly identical to the POSIX version running head-to-head on identical hardware across the network. Aside from feature differences that help Redis take advantage of the Windows infrastructure, our version of Redis should work in most situations with the identical setup and configuration that one would use on a POSIX operating system.* So it was installed as a service using `redis-server --service-install redis.windows.conf --loglevel verbose` on an command prompt run as administrator (**read the documentation**)
 * It's needed to run `bower install` from Windows' console, it requires some user's data entry that didn't prompt on cygwin's terminal
 * I had to correct the file `index.html` because `jquery.min.js` came inside `dist` directory: `<script src="jquery/dist/jquery.min.js"></script>`
+* I went to [Google's projects console](https://console.developers.google.com/) to add a project and its respective basic information and get its respective client id and secret code
+* The application's authentication strategy worked until April 20th, so I had to find another strategy: the recommended was `passport-google-oauth2` according to [this comment](https://github.com/jaredhanson/passport-google/issues/32#issuecomment-75877870)
 * I had to `npm uninstall passport --save` and `npm install passport --save` to get this package's last version
 * I had to `npm uninstall --save passport-google` and `npm install --save passport-google-oauth2` and modify `server.js` file because of this; and run `taskkill /IM node.exe /F` to restart the service
-* I went to [Google's projects console](https://console.developers.google.com/) to add a project and its respective basic information and get its respective client id and secret code
 * I entered this [question/answer entry](http://stackoverflow.com/questions/30145592/node-js-passport-google-oauth2-delivers-failed-to-fetch-user-profile-error-i) to document the changes that resulted from changing the authentication package and the importance of enabling the `Google+ API` from the project at [Google's projects console](https://console.developers.google.com/)
