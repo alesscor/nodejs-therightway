@@ -5,6 +5,7 @@ Learning to code for node.js, following advice from book [Node.js the Right Way:
 Preparation of:
 
 * cygwin environment for testing (make sure to include `curl` package)
+* Be sure that `git` is installed and available from `%path%` environment variable (`$PATH` on cygwin)
 * Download and installation of node.js version 0.10.20 (as recommended by the book)
 * Preparation of this repository (synchronized using eclipse onboard git)
 
@@ -127,7 +128,7 @@ Learning third-party modules!!! This is by writing robust messaging services in 
 About data persistence in databases and request to them, regarding asynchronous issues like overload of systems and how to mitigate these kind of problem and react to them.
 
 * Usage of CouchDB (at (http://couchdb.apache.org/)) for exploring databases with Node, start to using "RESTful" practices
-* Introduction to `package.json` file and `npm init` and `npm install --save <module>` and `npm install -g <module>` and `npm install`
+* Introduction to `package.json` file and `npm init` and `npm install --save <module>` and `npm install --save` and `npm install -g <module>` and `npm install`
 * Implementing a parser to RDF files and finding out a solution ([described here](https://bitbucket.org/snippets/alesscor/d6Kb)) to the book's proposal which worked partially. Having read `cheerio.load(...).map(..)` [documentation](https://github.com/cheeriojs/cheerio#map-functionindex-element-) helped
 * **Very important:** Overloading the operating system's services and implementing a queue-based solution
 * In the importation example (the one that fails because overloading the server with so many requests), the database results for the REST command `GET http://localhost:5984/books` were:
@@ -173,3 +174,12 @@ About data persistence in databases and request to them, regarding asynchronous 
 * Introduction to generated RESTful APIs with Express <3<3<3 and modularization of functionality and dependencies management
 * Introduction to generator functions with `function*(){...}` and `yield`, it allows communicate two portions of the code when convenient (two portions, specifically the generator function and the calling code)
 * Introduction to a much more simplified way for calling promises combining `Q.denodify(...)`, `Q.async(...)` and declaration and immediate call of generator functions; very practical!! `denodify(...)` makes functions able to generate promises which are called in a unique generator function that manages the promises in benefit of code's flow, including the exception management. **The code looks synchronous but it's actually asynchronous being more organized**
+
+### Chapter 7: Web Apps ###
+
+* I had to install first `express-session` and `cookie-parser`, also had to download and install as a service [redis for Windows](https://github.com/MSOpenTech/redis/releases). [Redis](http://en.wikipedia.org/wiki/Redis) is an implementation for shared memory. The Redis for Windows' developers say *We strive to have a stable, functionally equivalent and comparably performing version of Redis on Windows. We have achieved performance nearly identical to the POSIX version running head-to-head on identical hardware across the network. Aside from feature differences that help Redis take advantage of the Windows infrastructure, our version of Redis should work in most situations with the identical setup and configuration that one would use on a POSIX operating system.* So it was installed as a service using `redis-server --service-install redis.windows.conf --loglevel verbose` on an command prompt run as administrator (**read the documentation**)
+* It's needed to run `bower install` from Windows' console, it requires some user's data entry that didn't prompt on cygwin's terminal
+* I had to correct the file `index.html` because `jquery.min.js` came inside `dist` directory: `<script src="jquery/dist/jquery.min.js"></script>`
+* I had to `npm uninstall passport --save` and `npm install passport --save` to get this package's last version
+* I had to `npm uninstall --save passport-google` and `npm install --save passport-google-oauth2` and modify `server.js` file because of this; and run `taskkill /IM node.exe /F` to restart the service
+* I entered this [question/answer entry](http://stackoverflow.com/questions/30145592/node-js-passport-google-oauth2-delivers-failed-to-fetch-user-profile-error-i) to document the changes that resulted from changing the authentication package and the importance of enabling the `Google+ API` from the project at [Google's projects console](https://console.developers.google.com/)
