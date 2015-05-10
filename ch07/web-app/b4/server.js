@@ -12,12 +12,8 @@ const
   redisClient = require('redis').createClient(),
   RedisStore = require('connect-redis')(express),
   /**
-   * changes related to changing into passport-google-openidconnect
+   * changes related to changing into passport-google-oauth2
    * are labeled #passport-google-oauth2
-   */
-  /**
-   * changes related to upgrading credentials
-   * are labeled #credentials
    */
   GoogleStrategy = require('passport-google-oauth2').Strategy; // #passport-google-oauth2
 
@@ -70,11 +66,6 @@ require('./lib/field-search.js')(config, app);
 require('./lib/bundle.js')(config, app);
 
 /*****  #passport-google-oauth2 vv    *****/
-app.get('/bichito:var?',
-  function(req, res){
-  res.json(200, { "hello": req.params });
- }
-);
 app.get('/auth/google',
   passport.authenticate('google', { successRedirect: '/',scope:
     [ 'https://www.googleapis.com/auth/userinfo.email']})
